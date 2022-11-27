@@ -17,7 +17,7 @@ namespace DeliveryCompany
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new DeliveryShow());
+            Application.Run(new Form1());
         }
     }
 }

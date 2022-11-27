@@ -13,8 +13,8 @@ namespace DeliveryCompany
 {
     public partial class Form1 : Form
     {
-        //public static SqlConnection sqlConnect = new SqlConnection("Data Source=DESKTOP-9HDCF87;Initial Catalog=DeliveryDatabase;Integrated Security=True");
-        public static SqlConnection sqlConnect = new SqlConnection(BdConnect.connect);
+
+        public static SqlConnection sqlConnect = new SqlConnection(BdConnect.connect); // подключение производится через файл BdConnect
         public Form1()
         {
             InitializeComponent();

@@ -57,6 +57,7 @@
             this.label4.Size = new System.Drawing.Size(298, 31);
             this.label4.TabIndex = 18;
             this.label4.Text = "Окно создания товара";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // label2
             // 
