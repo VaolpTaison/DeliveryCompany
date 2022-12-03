@@ -77,6 +77,12 @@
     <Compile Include="CreateUsers.Designer.cs">
       <DependentUpon>CreateUsers.cs</DependentUpon>
     </Compile>
+    <Compile Include="DeleteDelivery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DeleteDelivery.Designer.cs">
+      <DependentUpon>DeleteDelivery.cs</DependentUpon>
+    </Compile>
     <Compile Include="DeliveryShow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -117,6 +123,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CreateUsers.resx">
       <DependentUpon>CreateUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeleteDelivery.resx">
+      <DependentUpon>DeleteDelivery.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DeliveryShow.resx">
       <DependentUpon>DeliveryShow.cs</DependentUpon>

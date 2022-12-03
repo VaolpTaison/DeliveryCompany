@@ -20,12 +20,13 @@ namespace DeliveryCompany
 
         private void LogShow_Load(object sender, EventArgs e)
         {
-            /*using (StreamWriter fstream = new StreamWriter("log.txt", false))
+            StreamReader sr = new StreamReader("log.txt");
+            string line;
+            while ((line = sr.ReadLine()) != null)
             {
-                fileShow.DataSource = File.ReadAllLines("log.txt");
-                fstream.Close();
-            }*/
-            fileShow.Text = File.ReadAllText("log.txt");
+                fileShow.Items.Add(line);
+            }
+            sr.Close();
         }
 
         private void backButt_Click(object sender, EventArgs e)
@@ -33,6 +34,11 @@ namespace DeliveryCompany
             this.Hide();
             AdminPanel adPn = new AdminPanel();
             adPn.Show();
+        }
+
+        private void LogShow_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

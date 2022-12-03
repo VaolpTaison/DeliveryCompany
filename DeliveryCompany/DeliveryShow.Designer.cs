@@ -153,9 +153,9 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.Location = new System.Drawing.Point(687, 575);
+            this.button1.Location = new System.Drawing.Point(582, 584);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(277, 49);
+            this.button1.Size = new System.Drawing.Size(382, 85);
             this.button1.TabIndex = 21;
             this.button1.Text = "Распечатать отчёт";
             this.button1.UseVisualStyleBackColor = true;
@@ -169,7 +169,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1136, 655);
+            this.ClientSize = new System.Drawing.Size(1161, 716);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.backButt);
             this.Controls.Add(this.label2);

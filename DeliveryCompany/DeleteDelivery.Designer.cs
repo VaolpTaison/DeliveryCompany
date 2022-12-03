@@ -1,6 +1,6 @@
 ﻿namespace DeliveryCompany
 {
-    partial class LogShow
+    partial class DeleteDelivery
     {
         /// <summary>
         /// Required designer variable.
@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             this.backButt = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.fileShow = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // backButt
@@ -39,52 +37,27 @@
             this.backButt.Location = new System.Drawing.Point(641, 12);
             this.backButt.Name = "backButt";
             this.backButt.Size = new System.Drawing.Size(147, 45);
-            this.backButt.TabIndex = 27;
+            this.backButt.TabIndex = 28;
             this.backButt.Text = "Назад";
             this.backButt.UseVisualStyleBackColor = true;
             this.backButt.Click += new System.EventHandler(this.backButt_Click);
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.Location = new System.Drawing.Point(12, 19);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(328, 31);
-            this.label4.TabIndex = 28;
-            this.label4.Text = "Окно отображения логов";
-            // 
-            // fileShow
-            // 
-            this.fileShow.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.fileShow.FormattingEnabled = true;
-            this.fileShow.ItemHeight = 16;
-            this.fileShow.Location = new System.Drawing.Point(18, 75);
-            this.fileShow.Name = "fileShow";
-            this.fileShow.Size = new System.Drawing.Size(770, 340);
-            this.fileShow.TabIndex = 29;
-            // 
-            // LogShow
+            // DeleteDelivery
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.fileShow);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.backButt);
-            this.DoubleBuffered = true;
-            this.Name = "LogShow";
-            this.Text = "LogShow";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LogShow_FormClosing);
-            this.Load += new System.EventHandler(this.LogShow_Load);
+            this.Name = "DeleteDelivery";
+            this.Text = "DeleteDelivery";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DeleteDelivery_FormClosing);
+            this.Load += new System.EventHandler(this.DeleteDelivery_Load);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
+
         private System.Windows.Forms.Button backButt;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ListBox fileShow;
     }
 }

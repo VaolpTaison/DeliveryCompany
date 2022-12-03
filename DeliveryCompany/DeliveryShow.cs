@@ -18,6 +18,7 @@ namespace DeliveryCompany
         //public static SqlConnection sqlConnect = new SqlConnection(BdConnect.connect);
         public string connect;
         public int id_users, id_products, id_del;
+        private Button deleteDelivery = new Button();
         public DeliveryShow()
         {
             InitializeComponent();
@@ -77,10 +78,30 @@ namespace DeliveryCompany
             sqlConnection.Close();
         }
 
+        private void deleteDelivery_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            DeleteDelivery adPn = new DeleteDelivery();
+            adPn.Show();
+        }
+
         private void DeliveryShow_Load(object sender, EventArgs e)
         {
             tableDel.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             tableDel.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            if (Properties.Settings.Default.typeUsers == 0)
+            {
+                // deleteDelivery Button
+                deleteDelivery.Font = new Font("Microsoft Sans Serif", 20, FontStyle.Regular,
+                        GraphicsUnit.Point, ((byte)(204)));
+                deleteDelivery.Height = 85;
+                deleteDelivery.Width = 382;
+                deleteDelivery.Location = new Point(157, 584);
+                deleteDelivery.Text = "Перейти в окно удаления доставок";
+                deleteDelivery.Click += deleteDelivery_Click;
+                Controls.Add(deleteDelivery);
+            }
+
         }
 
         private void backButt_Click(object sender, EventArgs e)
