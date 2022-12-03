@@ -35,6 +35,7 @@ namespace DeliveryCompany
                 loginReg.Clear();
                 passReg.Clear();
                 sqlConnect.Close();
+                BdConnect.LogThis(Properties.Settings.Default.nameUsers + " создан новый пользователь с логином " + loginReg.Text);
             }
             else
             {

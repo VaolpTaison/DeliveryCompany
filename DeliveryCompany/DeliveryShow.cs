@@ -214,6 +214,7 @@ namespace DeliveryCompany
         private PrintPreviewDialog printPreviewDialog1 = new PrintPreviewDialog();
         private void button1_Click(object sender, EventArgs e)
         {
+            BdConnect.LogThis(Properties.Settings.Default.nameUsers + " была произведена распечатка файла доставок за" + dateDel.Value.Date.ToString("yyyy-MM-dd"));
             PrintDocument printDocument = new PrintDocument();
 
             printPreviewDialog1.Document = PrintPage;

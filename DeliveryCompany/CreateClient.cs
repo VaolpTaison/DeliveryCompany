@@ -29,9 +29,11 @@ namespace DeliveryCompany
                 cmd.CommandText = "insert into client values ('" + nameCl.Text + "', '" + adressCl.Text + "')";
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("Клиент внесён в базу данных");
+                BdConnect.LogThis(Properties.Settings.Default.nameUsers + " был создан новый клиент: " + nameCl.Text);
                 nameCl.Clear();
                 adressCl.Clear();
                 sqlConnect.Close();
+                
             }
             else
                 MessageBox.Show("Все поля должны быть заполнены!");

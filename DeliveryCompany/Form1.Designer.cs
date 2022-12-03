@@ -32,6 +32,10 @@
             this.loginAuth = new System.Windows.Forms.TextBox();
             this.passAuth = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.настройкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.настройкаПодключенияКБазеДанныхToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // okAuth
@@ -72,6 +76,32 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "Авторизация";
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.настройкиToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(419, 29);
+            this.menuStrip1.TabIndex = 4;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // настройкиToolStripMenuItem
+            // 
+            this.настройкиToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.настройкаПодключенияКБазеДанныхToolStripMenuItem});
+            this.настройкиToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.настройкиToolStripMenuItem.Name = "настройкиToolStripMenuItem";
+            this.настройкиToolStripMenuItem.Size = new System.Drawing.Size(99, 25);
+            this.настройкиToolStripMenuItem.Text = "Настройки";
+            // 
+            // настройкаПодключенияКБазеДанныхToolStripMenuItem
+            // 
+            this.настройкаПодключенияКБазеДанныхToolStripMenuItem.Name = "настройкаПодключенияКБазеДанныхToolStripMenuItem";
+            this.настройкаПодключенияКБазеДанныхToolStripMenuItem.Size = new System.Drawing.Size(364, 26);
+            this.настройкаПодключенияКБазеДанныхToolStripMenuItem.Text = "Настройка подключения к базе данных";
+            this.настройкаПодключенияКБазеДанныхToolStripMenuItem.Click += new System.EventHandler(this.настройкаПодключенияКБазеДанныхToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -81,9 +111,14 @@
             this.Controls.Add(this.passAuth);
             this.Controls.Add(this.loginAuth);
             this.Controls.Add(this.okAuth);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Авторизация";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
+            this.Load += new System.EventHandler(this.Form1_Load);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -95,6 +130,9 @@
         private System.Windows.Forms.TextBox loginAuth;
         private System.Windows.Forms.TextBox passAuth;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem настройкиToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem настройкаПодключенияКБазеДанныхToolStripMenuItem;
     }
 }
 

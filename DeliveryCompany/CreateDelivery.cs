@@ -127,6 +127,9 @@ namespace DeliveryCompany
                 cmd.ExecuteNonQuery();
                 sqlConnect.Close();
                 MessageBox.Show("Доставка сформирована!");
+                BdConnect.LogThis(Properties.Settings.Default.nameUsers + " была создана новая доставка " +
+                    "пользователю под ID " + clientEnter(tbDel.Text) + " товара под ID " + productsEnter(prodDel.Text) + 
+                    " " + date);
             }
             else
                 MessageBox.Show("Уточните ФИО клиента");

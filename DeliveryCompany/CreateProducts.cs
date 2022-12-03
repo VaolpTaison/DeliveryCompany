@@ -36,9 +36,12 @@ namespace DeliveryCompany
                 cmd.CommandText = "insert into products values ('" + nameProd.Text + "', '" + descProd.Text + "')";
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("Товар внесён в базу данных");
+                BdConnect.LogThis(Properties.Settings.Default.nameUsers + " внесён в базу данных новый товар " +
+                    "" + nameProd.Text + "; Добавлено описание товара: " + descProd.Text);
                 nameProd.Clear();
                 descProd.Clear();
                 sqlConnect.Close();
+                
             }
             else
                 MessageBox.Show("Все поля должны быть заполнены!");

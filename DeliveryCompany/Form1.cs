@@ -13,8 +13,6 @@ namespace DeliveryCompany
 {
     public partial class Form1 : Form
     {
-
-        public static SqlConnection sqlConnect = new SqlConnection(BdConnect.connect); // подключение производится через файл BdConnect
         public Form1()
         {
             InitializeComponent();
@@ -27,53 +25,79 @@ namespace DeliveryCompany
 
         private void okAuth_Click(object sender, EventArgs e)
         {
-            if (loginAuth.Text != String.Empty && passAuth.Text != String.Empty)
+            try
             {
-                sqlConnect.Open();
-                SqlCommand cmd = sqlConnect.CreateCommand();
-                cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "select type from users where login = '" + loginAuth.Text + "' and password = '" + passAuth.Text + "'";
-                cmd.ExecuteNonQuery();
-                object result = cmd.ExecuteScalar();
-                if (result == null)
+                SqlConnection sqlConnect = new SqlConnection(BdConnect.connect);
+                if (loginAuth.Text != String.Empty && passAuth.Text != String.Empty)
                 {
-                    MessageBox.Show("Такого пользователя не существует!\nОбратитесь к администратору");
-                    loginAuth.Clear();
-                    passAuth.Clear();
-                    sqlConnect.Close();
+                    
+                    sqlConnect.Open();
+                    SqlCommand cmd = sqlConnect.CreateCommand();
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = "select type, login from users where login = '" + loginAuth.Text + "' and password = '" + passAuth.Text + "'";
+                    cmd.ExecuteNonQuery();
+                    object result = cmd.ExecuteScalar();
+                    if (result == null)
+                    {
+                        MessageBox.Show("Такого пользователя не существует!\nОбратитесь к администратору");
+                        loginAuth.Clear();
+                        passAuth.Clear();
+                        sqlConnect.Close();
+                    }
+                    else
+                    {
+                        DataTable dt = new DataTable();
+                        SqlDataAdapter da = new SqlDataAdapter(cmd);
+                        da.Fill(dt);
+                        foreach (DataRow dr in dt.Rows)
+                        {
+                            if (dr[0].ToString() == "0")
+                            {
+                                Properties.Settings.Default.nameUsers = dr[1].ToString(); 
+                                Properties.Settings.Default.typeUsers = 0;
+                                this.Hide();
+                                AdminPanel adPn = new AdminPanel();
+                                adPn.Show();
+                                BdConnect.LogThis(Properties.Settings.Default.nameUsers + " был осущствлён вход");
+                            }
+                            if (dr[0].ToString() == "1")
+                            {
+                                Properties.Settings.Default.nameUsers = dr[1].ToString();
+                                Properties.Settings.Default.typeUsers = 1;
+                                this.Hide();
+                                AdminPanel dlSh = new AdminPanel();
+                                dlSh.Show();
+                                BdConnect.LogThis(Properties.Settings.Default.nameUsers + " был осущствлён вход");
+                            }
+                        }
+                        sqlConnect.Close();
+                    }
+
                 }
                 else
                 {
-                    DataTable dt = new DataTable();
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    da.Fill(dt);
-                    foreach (DataRow dr in dt.Rows)
-                    {
-                        if (dr[0].ToString() == "0")
-                        {
-                            this.Hide();
-                            AdminPanel adPn = new AdminPanel();
-                            adPn.Show();
-                        }
-                        if (dr[0].ToString() == "1")
-                        {
-                            this.Hide();
-                            DeliveryShow dlSh = new DeliveryShow();
-                            dlSh.Show();
-                        }
-                        else
-                        {
-
-                        }
-                    }
-                    sqlConnect.Close();
+                    MessageBox.Show("Обязательные для ввода поля пусты!\nПовторите попытку");
                 }
-                
             }
-            else
+            catch
             {
-                MessageBox.Show("Обязательные для ввода поля пусты!\nПовторите попытку");
+                MessageBox.Show("Было введено неправильное подключение к БД!\n" +
+                    "Проверьте правильность адреса подключения или обратитесь к администратору!");
             }
+            
+        }
+
+        private void настройкаПодключенияКБазеДанныхToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            SettingConnection dlSh = new SettingConnection();
+            dlSh.Show();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.typeUsers = 0;
+            Properties.Settings.Default.nameUsers = "";
         }
     }
 }
