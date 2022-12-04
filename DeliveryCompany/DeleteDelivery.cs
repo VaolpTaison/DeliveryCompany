@@ -135,6 +135,7 @@ namespace DeliveryCompany
 
         private void tableLoad()
         {
+            tableDel.Rows.Clear();
             string add, fio, del;
             SqlConnection sqlConnection = new SqlConnection(BdConnect.connect);
             sqlConnection.Open();
@@ -169,9 +170,9 @@ namespace DeliveryCompany
 
         private void DeleteDelivery_Load(object sender, EventArgs e)
         {
-            /*int num = initiallyNum() - deleteNum();
+            int num = initiallyNum() - deleteNum();
             BdConnect.LogThis("Из таблицы с доставками было удалено " + num + " строк за предыдущие дни от текущего " +
-                "(" + DateTime.Now.ToString("yyyy-MM-dd") + ")");*/
+                "(" + DateTime.Now.ToString("yyyy-MM-dd") + ")");
             tableLoad();
         }
 
@@ -201,8 +202,9 @@ namespace DeliveryCompany
                 }
                 i++;
             }
-            tableDel.Rows.Clear();
             tableLoad();
+
+            BdConnect.LogThis(Properties.Settings.Default.nameUsers + " из таблицы с доставками было удалено " + i + " строк");
 
             /*int index = tableDel.SelectedRows[0].Index;
             int id = Convert.ToInt32(tableDel.Rows[index].Cells[0].Value);
