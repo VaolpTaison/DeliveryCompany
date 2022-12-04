@@ -17,5 +17,8 @@
     <Setting Name="nameUsers" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="intDeleteLog" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

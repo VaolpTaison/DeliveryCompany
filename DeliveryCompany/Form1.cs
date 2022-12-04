@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.IO;
 
 namespace DeliveryCompany
 {
@@ -96,8 +97,25 @@ namespace DeliveryCompany
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            int date = Convert.ToInt32(DateTime.Now.ToString("dd"));
             Properties.Settings.Default.typeUsers = 0;
             Properties.Settings.Default.nameUsers = "";
+            //-----------------------------------------------------------------
+            // ПОДУМАТЬ НАД УДАЛЕНИЕМ СТРОК В ОПРЕДЕЛЁННЫЙ ДЕНЬ
+            /*if (date % 2 == 0 & Properties.Settings.Default.intDeleteLog == 0)
+            {
+                using (StreamReader sr = new StreamReader("log.txt"))
+                {
+                    string str = "";
+                    for (int i = 0; i < 10; i++)
+                    {
+                        str = str + sr.ReadLine() + "\n";
+                    }
+                    sr.Close();
+                }
+            }
+            else
+                Properties.Settings.Default.intDeleteLog = 0;*/
         }
     }
 }

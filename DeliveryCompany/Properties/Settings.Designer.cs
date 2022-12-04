@@ -81,5 +81,16 @@ namespace DeliveryCompany.Properties {
                 this["nameUsers"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public int intDeleteLog {
+            get {
+                return ((int)(this["intDeleteLog"]));
+            }
+            set {
+                this["intDeleteLog"] = value;
+            }
+        }
     }
 }

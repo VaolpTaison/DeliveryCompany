@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -13,6 +14,9 @@ namespace DeliveryCompany
 {
     public partial class DeleteDelivery : Form
     {
+        public string connect;
+        public int id_users, id_products, id_del;
+
         public DeleteDelivery()
         {
             InitializeComponent();
@@ -65,11 +69,112 @@ namespace DeliveryCompany
             return i;
         }
 
+        // фамилия клиента
+        private string client_inf(int id)
+        {
+            string id_u = "";
+            SqlConnection sqlConnection = new SqlConnection(BdConnect.connect);
+            sqlConnection.Open();
+            SqlCommand cmd = sqlConnection.CreateCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "select name from client where id = " + id + "";
+            cmd.ExecuteNonQuery();
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(dt);
+            foreach (DataRow row in dt.Rows)
+            {
+                id_u = Convert.ToString(row[0]);
+            }
+            sqlConnection.Close();
+            return id_u;
+        }
+
+        // адрес проживания
+        private string client_add(int id)
+        {
+            string id_a = "";
+            SqlConnection sqlConnection = new SqlConnection(BdConnect.connect);
+            sqlConnection.Open();
+            SqlCommand cmd = sqlConnection.CreateCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "select address from client where id = " + id + "";
+            cmd.ExecuteNonQuery();
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(dt);
+            foreach (DataRow row in dt.Rows)
+            {
+                id_a = Convert.ToString(row[0]);
+            }
+            sqlConnection.Close();
+            return id_a;
+        }
+
+        // наименование продукта
+        private string product_name(int id)
+        {
+            string id_p = "";
+            SqlConnection sqlConnection = new SqlConnection(BdConnect.connect);
+            sqlConnection.Open();
+            SqlCommand cmd = sqlConnection.CreateCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "select name from products where id = " + id + "";
+            cmd.ExecuteNonQuery();
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(dt);
+            foreach (DataRow row in dt.Rows)
+            {
+                id_p = Convert.ToString(row[0]);
+            }
+            sqlConnection.Close();
+            return id_p;
+        }
+
         private void DeleteDelivery_Load(object sender, EventArgs e)
         {
-            int num = initiallyNum() - deleteNum();
+            /*int num = initiallyNum() - deleteNum();
             BdConnect.LogThis("Из таблицы с доставками было удалено " + num + " строк за предыдущие дни от текущего " +
-                "(" + DateTime.Now.ToString("yyyy-MM-dd") + ")");
+                "(" + DateTime.Now.ToString("yyyy-MM-dd") + ")");*/
+            string add, fio, del;
+            SqlConnection sqlConnection = new SqlConnection(BdConnect.connect);
+            sqlConnection.Open();
+            SqlCommand cmd = sqlConnection.CreateCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "select id, id_client, id_products, DATEFROMPARTS(YEAR(GETDATE()), MONTH(GETDATE()), 1) as date from delivery;";
+            cmd.ExecuteNonQuery();
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(dt);
+            int i = 0;
+            foreach (DataRow row in dt.Rows)
+            {
+                id_users = Convert.ToInt32(row[1]);
+                id_products = Convert.ToInt32(row[1]);
+                id_del = Convert.ToInt32(row[2]);
+
+                fio = client_inf(id_users);
+                add = client_add(id_users);
+                del = product_name(id_del);
+                tableDel.Rows.Add();
+                // сортировка данных в DataGridView
+                tableDel.Rows[i].Cells[0].Value = Convert.ToInt32(row[0].ToString());
+                tableDel.Rows[i].Cells[1].Value = fio;
+                tableDel.Rows[i].Cells[2].Value = add;
+                tableDel.Rows[i].Cells[3].Value = del;
+                tableDel.Rows[i].Cells[4].Value = row[3].ToString();
+                i++;
+            }
+            sqlConnection.Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            int index = tableDel.SelectedRows[0].Index;
+            MessageBox.Show("" + index);
+            MessageBox.Show("" + tableDel.Rows[index].Cells[0].Value);
+
         }
 
         private void DeleteDelivery_FormClosing(object sender, FormClosingEventArgs e)

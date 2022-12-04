@@ -77,6 +77,7 @@ namespace DeliveryCompany
         {
             if (Properties.Settings.Default.typeUsers == 0)
             {
+                button5.Text = "Отобразить доставки (удалить)";
                 // изменение размера формы
                 this.Height = 629;
                 this.Width = 951;
