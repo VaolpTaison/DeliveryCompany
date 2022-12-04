@@ -37,13 +37,14 @@
             this.product = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.adress = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.deleteCB = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.tableDel)).BeginInit();
             this.SuspendLayout();
             // 
             // backButt
             // 
             this.backButt.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.backButt.Location = new System.Drawing.Point(683, 12);
+            this.backButt.Location = new System.Drawing.Point(748, 12);
             this.backButt.Name = "backButt";
             this.backButt.Size = new System.Drawing.Size(147, 45);
             this.backButt.TabIndex = 28;
@@ -53,6 +54,7 @@
             // 
             // tableDel
             // 
+            this.tableDel.AllowUserToAddRows = false;
             this.tableDel.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
@@ -68,20 +70,21 @@
             this.fio,
             this.product,
             this.adress,
-            this.date});
+            this.date,
+            this.deleteCB});
             this.tableDel.Location = new System.Drawing.Point(12, 80);
             this.tableDel.Name = "tableDel";
-            this.tableDel.ReadOnly = true;
-            this.tableDel.Size = new System.Drawing.Size(818, 467);
+            this.tableDel.Size = new System.Drawing.Size(881, 467);
             this.tableDel.TabIndex = 29;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(755, 582);
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button1.Location = new System.Drawing.Point(12, 553);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(881, 52);
             this.button1.TabIndex = 30;
-            this.button1.Text = "button1";
+            this.button1.Text = "Удалить выбранную строку";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -99,7 +102,7 @@
             this.fio.HeaderText = "ФИО клиента";
             this.fio.Name = "fio";
             this.fio.ReadOnly = true;
-            this.fio.Width = 127;
+            this.fio.Width = 139;
             // 
             // product
             // 
@@ -125,11 +128,18 @@
             this.date.ReadOnly = true;
             this.date.Width = 136;
             // 
+            // deleteCB
+            // 
+            this.deleteCB.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.deleteCB.HeaderText = "Выберите доставки для удаления";
+            this.deleteCB.Name = "deleteCB";
+            this.deleteCB.Width = 185;
+            // 
             // DeleteDelivery
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(842, 636);
+            this.ClientSize = new System.Drawing.Size(907, 636);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.tableDel);
             this.Controls.Add(this.backButt);
@@ -152,5 +162,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn product;
         private System.Windows.Forms.DataGridViewTextBoxColumn adress;
         private System.Windows.Forms.DataGridViewTextBoxColumn date;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn deleteCB;
     }
 }

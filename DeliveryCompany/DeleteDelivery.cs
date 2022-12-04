@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -132,11 +133,8 @@ namespace DeliveryCompany
             return id_p;
         }
 
-        private void DeleteDelivery_Load(object sender, EventArgs e)
+        private void tableLoad()
         {
-            /*int num = initiallyNum() - deleteNum();
-            BdConnect.LogThis("Из таблицы с доставками было удалено " + num + " строк за предыдущие дни от текущего " +
-                "(" + DateTime.Now.ToString("yyyy-MM-dd") + ")");*/
             string add, fio, del;
             SqlConnection sqlConnection = new SqlConnection(BdConnect.connect);
             sqlConnection.Open();
@@ -169,11 +167,48 @@ namespace DeliveryCompany
             sqlConnection.Close();
         }
 
+        private void DeleteDelivery_Load(object sender, EventArgs e)
+        {
+            /*int num = initiallyNum() - deleteNum();
+            BdConnect.LogThis("Из таблицы с доставками было удалено " + num + " строк за предыдущие дни от текущего " +
+                "(" + DateTime.Now.ToString("yyyy-MM-dd") + ")");*/
+            tableLoad();
+        }
+
+        // удаление строк из бд по id
+        private void deleteDelivery (int id)
+        {
+            SqlConnection sqlConnect = new SqlConnection(BdConnect.connect);
+            sqlConnect.Open();
+            SqlCommand cmd = sqlConnect.CreateCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "DELETE from delivery WHERE  id = " + id + "";
+            cmd.ExecuteNonQuery();
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
-            int index = tableDel.SelectedRows[0].Index;
+            int rows = tableDel.Rows.Count;
+            int i = 0, id = 0;
+            bool check = false;
+            foreach (DataGridViewRow row in tableDel.Rows)
+            {
+                check = Convert.ToBoolean(tableDel.Rows[i].Cells[5].Value);
+                if (check == true)
+                {
+                    id = Convert.ToInt32(tableDel.Rows[i].Cells[0].Value);
+                    deleteDelivery(id);
+                }
+                i++;
+            }
+            tableDel.Rows.Clear();
+            tableLoad();
+
+            /*int index = tableDel.SelectedRows[0].Index;
+            int id = Convert.ToInt32(tableDel.Rows[index].Cells[0].Value);
             MessageBox.Show("" + index);
             MessageBox.Show("" + tableDel.Rows[index].Cells[0].Value);
+            deleteDelivery(id);*/
 
         }
 
